@@ -1,115 +1,79 @@
-import Tarefa from "../models/tarefaModel.js";
+import  Evento  from "../models/eventoModel.js";
 import { z } from "zod";
 
-//validar tarefa
-const createSchema = z.object({
-    tarefa: z.string({
-        invalid_type_error: "A tarefa deve ser um texto",
-        required_error: "Tarefa é obrigatória"
-    })
-        .min(3, { message: "A tarefa deve conter pelo menos 3 caracteres" })
-        .max(255, { message: "A tarefa deve conter no máximo 255 caracteres" }),
+const eventoSchema = z.object({
+  titulo: z.string().trim().min(1, { message: "O título é obrigatório" }),
+  tipo: z.string().trim().min(1, { message: "O tipo de evento é obrigatório" }),
+  data: z.date().trim().min(1, { message: "O data é obrigatória" }),
+  hora: z.string().trim().min(1, { message: "O hora é obrigatória" }),
+  local: z.string().trim().min(1, { message: "O local é obrigatória" }),
 });
 
-//validar id
-const idSchema = z.object({
-    id: z.string().uuid({ message: 'ID inválido' })
-});
 
-//POST -> criar
-export const create = async (request, response) => {
-    const createValidation = createSchema.safeParse(request.body);
-    if (!createValidation.success) {
-        return response.status(400).json(createValidation.error);
+export const getEventos = (resquest, response) => {
+
+  const query = /*sql */`SELECT * FROM eventos`
+
+  Evento.query(query, (error, data) => {
+    if (error) {
+      return response.json(error)
     }
-
-    const { tarefa } = createValidation.data;
-
-    //campo escrever opc
-    const descricao = request.body?.descricao || null;
-
-    const novaTarefa = { tarefa, descricao };
-
-    try {
-        const addTarefa = await Tarefa.create(novaTarefa);
-        response.status(201).json({ message: "Tarefa criada", addTarefa });
-    } catch (error) {
-        console.log(error)
-        response.status(500).json({ message: "Erro ao criar tarefa" });
-    }
+    return response.status(200).json(data)
+  });
 };
 
-//GET => 3333/api/tarefa?page=1&limit=10
-export const getAll = async (request, response) => {
-    const page = parseInt(request.query.page) || 1;
-    const limit = parseInt(request.query.limit) || 10;
-    const offset = (page - 1) * 10;
+export const addEventos = (request, response) => {
 
-    try {
-        const tarefas = await Tarefa.findAndCountAll({
-            limit,
-            offset
-        });//select * from tabela
+  const validation = eventoSchema.safeParse(request.body);
+  if (!validation.success) {
+    return response.status(400).json("Foi barrado na minha validação!");
+  }
 
-        const totalPages = Math.ceil(tarefas.count / limit)
-        response.status(200).json({
-            totalTarefas: tarefas.count,
-            totalPages,
-            paginaAtual: page,
-            itensPorPage: limit,
-            proximaPage: totalPages === 0 ? null : `http://localhost:3333/api/tarefas/page=${page + 1}`,
-            tarefas: tarefas.rows,
-        });
+  const query = "INSERT INTO books(`titulo`, `autor`, `editora`) VALUES (?)"
+  const values = [
+    validation.data.titulo,
+    validation.data.tipo,
+    validation.data.data,
+  ]
 
-    } catch (error) {
-        console.log(error);
-        response.status(500).json({ error: "Error ao buscar a tarefas", error });
+  Evento.query(query, [values], (error) => {
+    if (error) {
+      return response.json(error)
     }
+    return response.status(200).json({ message: "Livro cadastrado com sucesso!" })
+  });
 };
 
-//GET -> tarefa por id
-export const getTarefa = async (request, response) => {
-    const idValidation = idSchema.safeParse(request.params);
-    if (!idValidation.success) {
-        return response.status(400).json({ message: idValidation.error });
-    }
-    const id = idValidation.data.id;
+export const deleteBook = (request, response) => {
+  const query = "DELETE FROM books WHERE id = ?"
 
-    try {
-        const tarefa = await Tarefa.findByPk(id);
-        if (!tarefa) {
-            return response.status(404).json({ message: "Tarefa não encontrada" });
-        }
-        response.status(200).json(tarefa);
-
-    } catch (error) {
-        console.log(error);
-        response.status(500).json({ message: "Erro ao buscar tarefa" });
+  Evento.query(query, [request.params.id], (error) => {
+    if (error) {
+      return response.status(500).json(error);
     }
+    return response.status(200).json({ message: "Livro deletado com sucesso!" });
+  });
 };
 
-export const updateTarefa = async (request, response) => {
-    response.status(200).json("Chegou no controlador");
-}
+export const updateBook = (request, response) => {
 
-//DEL -> tarefa por id 
-export const deleteEvento = async (request, response) => {
-    const idValidation = idSchema.safeParse(request.params);
-    if (!idValidation.success) {
-        return response.status(400).json({ message: idValidation.error });
+  const validation = eventoSchema.safeParse(request.body);
+  if (!validation.success) {
+    return response.status(400).json(validation.error.issues);
+  }
+
+  const query = "UPDATE books SET titulo = ?, autor = ?, editora = ? WHERE id = ?";
+
+  const values = [
+    validation.data.titulo,
+    validation.data.autor,
+    validation.data.editora
+  ];
+
+  Evento.query(query, [...values, request.params.id], (error) => {
+    if (error) {
+      return response.status(500).json(error);
     }
-    const id = idValidation.data.id;
-
-    try {
-        const tarefaDeletada = await Tarefa.destroy({ where: { id } });
-        if (tarefaDeletada === 0) {
-            return response.status(404).json({ message: "Tarefa não existe" });
-        }
-
-        response.status(200).json({ message: "Tarefa deletada com sucesso!" });
-
-    } catch (error) {
-        console.log(error);
-        response.status(500).json({ error: "Error ao deletar a tarefa", error });
-    }
+    return response.status(200).json({ message: "Livro atualizado com sucesso!" });
+  });
 };

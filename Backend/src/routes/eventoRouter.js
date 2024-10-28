@@ -1,12 +1,14 @@
-import { request, response, Router } from "express";
-import { create, deleteEvento, getAll, getEvento, updateEvento } from "../controllers/tarefaController.js";
+import express from 'express';
+import { getBooks, addBook, deleteBook, updateBook } from '../controller/books.js';
 
-const router = Router();
+const router = express.Router();
 
-router.get('/', getAll);
-router.post('/', create);
-router.get('/:id', getTarefa);
-router.put('/:id', updateTarefa);
-router.delete('/:id', deleteEvento);
+router.get("/", getBooks);
+
+router.post("/", addBook);
+
+router.delete("/:id", deleteBook);
+
+router.put("/:id", updateBook);
 
 export default router;

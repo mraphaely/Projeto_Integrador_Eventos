@@ -18,6 +18,14 @@ const Eventos = conn.define("eventos", {
         type: DataTypes.STRING,
         allowNull: false
     },
+    data: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    hora: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     local: {
         type: DataTypes.STRING,
         allowNull: false
@@ -30,18 +38,10 @@ const Eventos = conn.define("eventos", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    uploadimg: {
-        type: DataTypes.STRING,
+    image: {
+        // type: DataTypes.STRING,
     },
     categoria: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    data: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    horario: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -54,6 +54,9 @@ const Eventos = conn.define("eventos", {
         allowNull: false
     },
     ingresso: {
+        type: DataTypes.TEXT,
+    },
+    descricao: {
         type: DataTypes.TEXT,
     },
 }, {
