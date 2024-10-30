@@ -14,7 +14,18 @@ const Eventos = conn.define("eventos", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    tipo: {
+    local: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    image: {
+        // type: DataTypes.STRING,
+    },
+    cidade: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    categoria: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -26,30 +37,7 @@ const Eventos = conn.define("eventos", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    local: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    cidade: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    estado: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    image: {
-        // type: DataTypes.STRING,
-    },
-    categoria: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     vagas: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    lote: {
         type: DataTypes.STRING,
         allowNull: false
     },
