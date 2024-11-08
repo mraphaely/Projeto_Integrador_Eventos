@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import conn from "../config/conn.js";
 
-const Palestrante = conn.define("palestrantes", {
+const Usuario = conn.define("usuarios", {
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -10,21 +10,21 @@ const Palestrante = conn.define("palestrantes", {
             isUUID: 4
         }
     },
-    evento: {
+    email: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    nome: {
+    senha: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    expertise: {
+    confirma_senha: {
         type: DataTypes.STRING,
         allowNull: false
     },
 }, {
-    tableName: "palestrantes",
+    tableName: "usuarios",
 }
 );
 
-export default Palestrante;
+export default Usuario;

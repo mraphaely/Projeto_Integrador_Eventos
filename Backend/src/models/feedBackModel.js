@@ -1,22 +1,32 @@
 import { DataTypes } from "sequelize";
-import conn from "../config/conn.js";
+import conn from "../config/connDB.js";
 
-const feedBack = conn.define("feedback", {
-    id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+import Usuario from "./usuarioModel.js";
+
+const Feedback = conn.define("feedbacks", {
+   id: {
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        validate: {
-            isUUID: 4
-        }
+        autoIncrement: true
     },
     mensagem: {
-        type: DataTypes.TEXT,
-        allowNull: false
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            min: 3
+        }
     },
-}, {
-    tableName: "feedback",
-}
-);
+    usuario_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Usuario,
+          key: "id"
+        },
+        onDelete: "CASCADE"
+    },
 
-export default feedBack;
+});
+
+Feedback.belongsTo(Usuario, { foreignKey: "usuario_id" });
+
+export default Feedback;

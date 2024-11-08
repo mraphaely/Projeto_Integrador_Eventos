@@ -3,7 +3,7 @@ import cors from "cors";
 
 import conn from "./config/conn.js"
 
-import Eventos from "./models/eventoModel.js";
+import Evento from "./models/eventoModel.js";
 
 import eventoRouter from "./routes/eventoRouter.js";
 

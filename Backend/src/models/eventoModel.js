@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import conn from "../config/conn.js";
 
-const Eventos = conn.define("eventos", {
+const Evento = conn.define("eventos", {
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -19,9 +19,18 @@ const Eventos = conn.define("eventos", {
         allowNull: false
     },
     image: {
-        // type: DataTypes.STRING,
+        type: DataTypes.STRING,
+        // allowNull: false
     },
     cidade: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    data: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    horario: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -29,11 +38,7 @@ const Eventos = conn.define("eventos", {
         type: DataTypes.STRING,
         allowNull: false
     },
-    data: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    hora: {
+    palestrante: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -42,7 +47,8 @@ const Eventos = conn.define("eventos", {
         allowNull: false
     },
     ingresso: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
+        allowNull: false
     },
     descricao: {
         type: DataTypes.TEXT,
@@ -52,4 +58,4 @@ const Eventos = conn.define("eventos", {
 }
 );
 
-export default Eventos;
+export default Evento;

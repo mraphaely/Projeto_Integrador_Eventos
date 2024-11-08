@@ -1,30 +1,32 @@
 import { DataTypes } from "sequelize";
-import conn from "../config/conn.js";
+import conn from "../config/connDB.js";
+
+import Usuario from "./usuarioModel.js";
 
 const Inscricao = conn.define("inscricoes", {
-    id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+   id: {
+        type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
         validate: {
-            isUUID: 4
+            min: 5
         }
     },
-    nome_participante: {
-        type: DataTypes.STRING,
-        allowNull: false
+    usuario_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Usuario,
+          key: "id"
+        },
+        onDelete: "CASCADE"
     },
-    evento: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    qnt_ingresso: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-}, {
-    tableName: "inscricoes",
-}
-);
+
+});
+
+Inscricao.belongsTo(Usuario, { foreignKey: "usuario_id" });
 
 export default Inscricao;
