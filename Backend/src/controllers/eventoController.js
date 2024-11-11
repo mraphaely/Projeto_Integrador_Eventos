@@ -59,12 +59,12 @@ export const create = async (request, response) => {
         return response.status(400).json(createValidation.error);
     }
 
-    const { titulo } = createValidation.data;
+    const { titulo, local, image, cidade, data, horario, categoria, palestrante, vagas, ingresso } = createValidation.data;
 
     //campo escrever opc
     const descricao = request.body?.descricao || null;
 
-    const novoEvento = { titulo, descricao };
+    const novoEvento = { titulo, local, image, cidade, data, horario, categoria, palestrante, vagas, ingresso, descricao };
 
     try {
         const addEvento = await Evento.create(novoEvento);
@@ -75,7 +75,7 @@ export const create = async (request, response) => {
     }
 };
 
-// //GET => 3333/api/tarefa?page=1&limit=10
+// //GET => 3333/eventos/select?page=1&limit=10
 // export const getAll = async (request, response) => {
 //     const page = parseInt(request.query.page) || 1;
 //     const limit = parseInt(request.query.limit) || 10;
