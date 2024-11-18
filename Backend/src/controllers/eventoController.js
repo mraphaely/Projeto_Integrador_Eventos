@@ -61,14 +61,38 @@ export const create = async (request, response) => {
     }
 };
 
-export const getEventos = async (req, res) => {
+export const getEventos = async (request, response) => {
+    const page = parseInt(request.query.page) || 1;
+    const limit = parseInt(request.query.limit) || 10;
+    const offset = (page - 1) * 10;
+
     try {
-        const eventos = await Evento.findAll();
-        res.status(200).json(eventos);
+        const tarefas = await Tarefa.findAndCountAll({
+            limit,
+            offset
+        });//select * from tabela
+
+        const totalPages = Math.ceil(tarefas.count / limit)
+        response.status(200).json({
+            totalTarefas: tarefas.count,
+            totalPages,
+            paginaAtual: page,
+            itensPorPage: limit,
+            proximaPage: totalPages === 0 ? null : `http://localhost:3333/eventos/page=${page + 1}`,
+            tarefas: tarefas.rows,
+        });
+
     } catch (error) {
-        console.error("Erro ao listar eventos:", error);
-        res.status(500).json({ error: "Erro ao listar eventos" });
+        console.log(error);
+        response.status(500).json({ error: "Error ao buscar a tarefas", error });
     }
+    // try {
+    //     const eventos = await Evento.findAll();
+    //     res.status(200).json(eventos);
+    // } catch (error) {
+    //     console.error("Erro ao listar eventos:", error);
+    //     res.status(500).json({ error: "Erro ao listar eventos" });
+    // }
 };
 
 
@@ -87,33 +111,8 @@ const updateSchema = z.object({
     status: z.enum(["pendente", "concluída"]),
 });
 
-// //GET => 3333/api/tarefa?page=1&limit=10
-// export const getAll = async (request, response) => {
-//     const page = parseInt(request.query.page) || 1;
-//     const limit = parseInt(request.query.limit) || 10;
-//     const offset = (page - 1) * 10;
 
-//     try {
-//         const tarefas = await Tarefa.findAndCountAll({
-//             limit,
-//             offset
-//         });//select * from tabela
-
-//         const totalPages = Math.ceil(tarefas.count / limit)
-//         response.status(200).json({
-//             totalTarefas: tarefas.count,
-//             totalPages,
-//             paginaAtual: page,
-//             itensPorPage: limit,
-//             proximaPage: totalPages === 0 ? null : `http://localhost:3333/api/tarefas/page=${page + 1}`,
-//             tarefas: tarefas.rows,
-//         });
-
-//     } catch (error) {
-//         console.log(error);
-//         response.status(500).json({ error: "Error ao buscar a tarefas", error });
-//     }
-// };
+//GET => 3333/eventos/select?page=1&limit=10
 
 // //GET -> pegar tarefa por id
 // export const getTarefa = async (request, response) => {
