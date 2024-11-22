@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import conn from "../config/connDB.js";
+import conn from "../config/conn.js";
 
 import Usuario from "./usuarioModel.js";
 

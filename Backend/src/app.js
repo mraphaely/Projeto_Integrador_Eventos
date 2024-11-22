@@ -4,8 +4,12 @@ import cors from "cors";
 import conn from "./config/conn.js"
 
 import Evento from "./models/eventoModel.js";
+import Feedback from "./models/feedbackModel.js";
+import Usuario from "./models/usuarioModel.js";
+import Inscricao from "./models/inscricaoModel.js";
 
 import eventoRouter from "./routes/eventoRouter.js";
+import feedbackRouter from "./routes/feedbackRouter.js";
 
 const app = express();
 
@@ -20,6 +24,7 @@ conn.sync(/*{ force: true }*/).then(() => {
 }).catch((error) => console.error(error));
 
 app.use("/eventos", eventoRouter)
+app.use("/eventos/contato", feedbackRouter)
 
 app.use((request, response) => {
     response.status(404).json({ message: "Rota não encontrada." });

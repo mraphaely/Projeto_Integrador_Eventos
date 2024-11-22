@@ -27,11 +27,7 @@ const Evento = conn.define("eventos", {
         allowNull: false
     },
     data: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    horario: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: false
     },
     categoria: {
@@ -52,6 +48,9 @@ const Evento = conn.define("eventos", {
     },
     descricao: {
         type: DataTypes.TEXT,
+    },
+    disponibilidade: {
+        type: DataTypes.STRING,
     },
 }, {
     tableName: "eventos",

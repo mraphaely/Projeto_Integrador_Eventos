@@ -1,13 +1,16 @@
 import { DataTypes } from "sequelize";
-import conn from "../config/connDB.js";
+import conn from "../config/conn.js";
 
 import Usuario from "./usuarioModel.js";
 
 const Feedback = conn.define("feedbacks", {
    id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        autoIncrement: true
+        validate: {
+            isUUID: 4
+        }
     },
     mensagem: {
         type: DataTypes.STRING,
@@ -17,7 +20,7 @@ const Feedback = conn.define("feedbacks", {
         }
     },
     usuario_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         references: {
           model: Usuario,
           key: "id"
