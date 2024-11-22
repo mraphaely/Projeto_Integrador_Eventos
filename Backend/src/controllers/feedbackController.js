@@ -36,10 +36,10 @@ export const enviarMensagem = async (request, response) => {
 export const getMensagens = async (request, response) => {
     try {
         const eventos = await Feedback.findAll();
-        res.status(200).json(eventos);
+        response.status(200).json(eventos);
     } catch (error) {
         console.error("Erro ao listar eventos:", error);
-        res.status(500).json({ error: "Erro ao listar eventos" });
+        response.status(500).json({ error: "Erro ao listar eventos" });
     }
 };
 

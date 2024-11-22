@@ -10,6 +10,7 @@ import Inscricao from "./models/inscricaoModel.js";
 
 import eventoRouter from "./routes/eventoRouter.js";
 import feedbackRouter from "./routes/feedbackRouter.js";
+import usuarioRouter from "./routes/usuarioRouter.js";
 
 const app = express();
 
@@ -25,6 +26,7 @@ conn.sync(/*{ force: true }*/).then(() => {
 
 app.use("/eventos", eventoRouter)
 app.use("/eventos/contato", feedbackRouter)
+app.use("/eventos/usuarios", usuarioRouter)
 
 app.use((request, response) => {
     response.status(404).json({ message: "Rota não encontrada." });

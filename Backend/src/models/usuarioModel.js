@@ -12,13 +12,16 @@ const Usuario = conn.define("usuarios", {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isEmail: true,
+        },
     },
     senha: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    confirma_senha: {
+    verifica_senha: {
         type: DataTypes.STRING,
         allowNull: false
     },
