@@ -12,7 +12,7 @@ const Login = () => {
                 <Btn to={'/PagCadastro'}>CADASTRO</Btn>
             </Caixinha1>
 
-            <Caixinha2>
+            <Caixinha2 className="caixa">
                 <H1>Faça login no codemarket</H1>
                 <LabelsInputs>
                     <Label >Email:</Label>

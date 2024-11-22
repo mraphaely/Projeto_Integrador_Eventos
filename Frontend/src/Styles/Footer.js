@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const DivFooter = styled.div`
 display: flex;
 flex-direction:column;
+position: relative;
 left: 0;
 bottom: 0;
 right: 0;
