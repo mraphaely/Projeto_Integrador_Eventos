@@ -18,6 +18,7 @@ export const Caixinha1 = styled.div`
   justify-content: center;
   align-items: center;
   height: 551.5px;
+  border-radius: 0px 10px 10px 0px ;
   background: linear-gradient(0deg, #5A00CB 0%, #2D0065 100%);
 `;
 
@@ -32,6 +33,7 @@ export const Caixinha2 = styled.div`
   /* background-image: url('../imgs/image7.png'); */
   background-size: cover;
   background-position: center;
+  border-radius: 10px 0px 0px 10px ;
 `;
 
 export const Btn = styled(Link)`

@@ -1,7 +1,7 @@
 import Evento from "../models/eventoModel.js";
 import { z } from "zod";
 
-// Validar tarefa
+// Validar evento 
 const createSchema = z.object({
     titulo: z.string({
         invalid_type_error: "O titulo do evento deve ser um texto",
@@ -106,12 +106,12 @@ export const getEventos = async (request, response) => {
 
         const totalPages = Math.ceil(eventos.count / limit)
         response.status(200).json({
-            totalTarefas: eventos.count,
+            totalEventos: eventos.count,
             totalPages,
             paginaAtual: page,
             itensPorPage: limit,
             proximaPage: totalPages === 0 ? null : `http://localhost:3333/eventos/page=${page + 1}`,
-            tarefas: eventos.rows,
+            eventos: eventos.rows,
         });
 
     } catch (error) {
@@ -127,7 +127,7 @@ export const getEventos = async (request, response) => {
     // }
 };
 
-//GET -> pegar tarefa por id
+//GET -> pegar evento por id
 export const getEvento = async (request, response) => {
     const idValidation = idSchema.safeParse(request.params);
     if (!idValidation.success) {

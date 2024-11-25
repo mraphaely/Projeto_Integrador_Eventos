@@ -1,126 +1,70 @@
-import {H1, Caixa2, Caixa, Linha, Linhas, CaixaH1} from '../Styles/PagEventosTec.js'
+import React from "react";
+import axios from "axios";
+import { Table, Button, Card } from "react-bootstrap";
+import {H1, Caixa2, Container, CaixaH1} from '../Styles/PagGetEventos.js'
 
-import foto1 from '../imgs/image6.png'
+const PagEventosTecnologia = () => {
+  const [eventos, setEventos] = React.useState([]);
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+  React.useEffect(() => {
+    const fetchEventos = async () => {
+      try {
+        const response = await axios.get("http://localhost:3333/eventos/listar");
+        if (response.data && Array.isArray(response.data.eventos)) {
+          setEventos(response.data.eventos);
+        } else {
+          setEventos([]);
+          console.log(fetchEventos)
+          console.log("A resposta da API não contém um array de eventos.");
+        }
+      } catch (error) {
+        console.error("Erro ao listar eventos:", error);
+        setEventos([]);
+      }
+    };
 
-import '../Styles/PagEventos.css'
+    fetchEventos();
+  }, []);
 
-const PagAddEventosTec = () => {
-    return(
-      <Caixa className='caixa'>
+  return (
+    <Container className='caixa'>
 
           <CaixaH1 className='caixa2'>
-            <H1>Eventos de Tecnologia:</H1>
+            <H1>Eventos em Tecnologia:</H1>
           </CaixaH1>
         <Caixa2>
 
-          <Linhas>
-              <Linha>
-            <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-
-    <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-
-    <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-
-              </Linha>
-              <Linha>
+    <Table striped bordered hover>
+      <tbody>
+        {eventos.length > 0 ? (
+          eventos.map((evento) => (
+            <React.Fragment key={evento.id}>
+              <div className="d-flex justify-content-around">
               <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
+                  <Card.Img variant="top" src={`http://localhost:3333/eventos/${evento.image}`} />
+                  <Card.Body>
+                    <Card.Title  style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>{evento.titulo}</Card.Title>
+                    <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>{evento.palestrante}</Card.Text>
+                    <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>{evento.descricao}</Card.Text>
+                    <Button  variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>Saiba mais</Button>
+                  </Card.Body>
+                </Card>
 
 
-
-      </Card.Body>
-    </Card>
-
-    <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-
-    <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-                
-              </Linha>
-          </Linhas>
+              </div>
+            </React.Fragment>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="5">Nenhum evento disponível</td>
+          </tr>
+        )}
+      </tbody>
+    </Table>
 
         </Caixa2>
-      </Caixa>
-    )
+      </Container>
+  );
 }
-export default PagAddEventosTec
+
+export default PagEventosTecnologia

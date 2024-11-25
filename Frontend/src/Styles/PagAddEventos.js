@@ -79,7 +79,7 @@ export const InputDescricao = styled.input`
   margin-bottom: 35px;
 `;
 
-export const Btn = styled(Link)`
+export const Btn = styled.button`
   color: #fff;
   margin-top:50px !important ;
   display: flex;

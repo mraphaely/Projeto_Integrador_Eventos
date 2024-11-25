@@ -17,9 +17,6 @@ import PagAddEventosEmpreendedorismo from "../Components/PagEventosEmpreendedori
 import PagAddEventosGeral from "../Components/PagEventosGeral";
 import PagAddEventosTec from "../Components/PagEventosTecnologia";
 
-//rotas do cadastro e login
-import Cadastro from "../Components/Cadastro";
-
 
 
 const App = () => {
@@ -37,7 +34,6 @@ const App = () => {
                 <Route path="PagEventosEmpreendedorismo" element={<PagAddEventosEmpreendedorismo/>} />
                 <Route path="PagEventosGeral" element={<PagAddEventosGeral/>} />
                 <Route path="PagEventosTec" element={<PagAddEventosTec/>} />
-                <Route path="PagCadastro" element={<Cadastro/>} />
                 <Route path="PagLogin" element={<Login/>} />
             </Routes>
             <Footer/>

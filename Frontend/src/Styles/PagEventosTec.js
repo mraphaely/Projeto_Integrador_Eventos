@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Caixa = styled.div`
+export const Container = styled.div`
 display: flex;
 background-color:#000 ;
 flex-direction: column;
@@ -10,7 +10,7 @@ justify-content:space-evenly;
 export const Caixa2 = styled.div`   
 display: flex;
 background-color:#000 ;
-/* margin: 0px; */
+margin: 0px;
 flex-wrap: nowrap;
 flex-direction: column;
 justify-content: center;

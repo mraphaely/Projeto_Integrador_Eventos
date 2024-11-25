@@ -9,7 +9,7 @@ const Login = () => {
                 <H1>Novo(a) por aqui?</H1>
                 <P>Crie sua conta para criar ou descobrir eventos incríveis.</P>
 
-                <Btn to={'/PagCadastro'}>CADASTRO</Btn>
+                <Btn to={'/register'}>CADASTRO</Btn>
             </Caixinha1>
 
             <Caixinha2 className="caixa">
