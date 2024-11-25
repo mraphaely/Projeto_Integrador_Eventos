@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import {
@@ -8,11 +9,9 @@ import {
   Div,
   Linha1,
   Linha2,
-  InputDescricao,
   Linha3,
   Btn,
-  Input,
-} from "../Styles/PagAddEventos"; // Certifique-se de que Input é importado
+} from "../Styles/PagAddEventos"; 
 import "../Styles/PagAddEventos.css";
 import axios from "axios";
 
@@ -71,6 +70,7 @@ const PagAddEventos = () => {
                 <Label>Título:</Label>
                 <Form.Control
                   type="text"
+                  className="input"
                   placeholder="Digite o título do seu evento"
                   value={titulo}
                   onChange={(event) => setTitulo(event.target.value)}
@@ -81,6 +81,7 @@ const PagAddEventos = () => {
                 <Label>Local:</Label>
                 <Form.Control
                   type="text"
+                  className="input"
                   placeholder="Digite o local do evento"
                   value={local}
                   onChange={(event) => setLocal(event.target.value)}
@@ -91,6 +92,7 @@ const PagAddEventos = () => {
                 <Label>Imagem:</Label>
                 <Form.Control
                   type="file"
+                  className="input"
                   onChange={handleFileChange}
                   accept="image/*"
                 />
@@ -99,6 +101,7 @@ const PagAddEventos = () => {
                 <Label>Cidade:</Label>
                 <Form.Control
                   type="text"
+                  className="input"
                   placeholder="Digite a cidade do seu evento"
                   value={cidade}
                   onChange={(event) => setCidade(event.target.value)}
@@ -111,6 +114,7 @@ const PagAddEventos = () => {
                 <Label>Data:</Label>
                 <Form.Control
                   type="date"
+                  className="input"
                   value={data}
                   onChange={(event) => setData(event.target.value)}
                   required
@@ -120,6 +124,7 @@ const PagAddEventos = () => {
                 <Label>Categoria:</Label>
                 <Form.Control
                   type="text"
+                  className="input"
                   placeholder="Digite a categoria do seu evento"
                   value={categoria}
                   onChange={(event) => setCategoria(event.target.value)}
@@ -130,6 +135,7 @@ const PagAddEventos = () => {
                 <Label>Palestrante:</Label>
                 <Form.Control
                   type="text"
+                  className="input"
                   placeholder="Digite o palestrante do seu evento"
                   value={palestrante}
                   onChange={(event) => setPalestrante(event.target.value)}
@@ -140,6 +146,7 @@ const PagAddEventos = () => {
                 <Label>vagas:</Label>
                 <Form.Control
                   type="number"
+                  className="input"
                   placeholder="Digite a quantidade de vagas do seu evento"
                   value={vagas}
                   onChange={(event) => setVagas(event.target.value)}
@@ -153,6 +160,7 @@ const PagAddEventos = () => {
               <Label>Ingresso:</Label>
               <Form.Control
                 type="number"
+                className="input3"
                 placeholder="Digite a quantidade de ingressos do seu evento"
                 value={ingresso}
                 onChange={(event) => setIngresso(event.target.value)}
@@ -163,14 +171,14 @@ const PagAddEventos = () => {
               <Label>Descrição:</Label>
               <Form.Control
                 type="textarea"
-                placeholder="Digite a descrição da seua tarefa"
+                className="input2"
                 value={descricao}
                 onChange={(event) => setDescricao(event.target.value)}
               />
             </Form.Group>
           </Linha3>
 
-          <Btn variant="primary" type="submit">
+          <Btn variant="primary" type="submit" className="btn">
             CADASTRAR
           </Btn>
           {message ? <p>{message}</p> : <p>{loading}</p>}
@@ -181,3 +189,4 @@ const PagAddEventos = () => {
 };
 
 export default PagAddEventos;
+

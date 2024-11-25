@@ -1,5 +1,57 @@
-.caixa {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.589), rgba(0, 0, 0, 0.808)), url('../imgs/fundoRoxinhoLindao.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+.caixa {  
+    display: flex;
+    margin-top: 190px !important;
+    height: 1300px;
+    width: 500px;
+    border-radius: 10px;
+    width: 964px;
+    margin-bottom:300px !important;
+    background-color: #494c4e;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items:center;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.589), rgba(0, 0, 0, 0.808)), url('../imgs/fundoRoxinhoLindao.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  
+  .caixa .btn{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .input2{
+      width:1027.99px;
+      height: 267px;
+      display: flex;
+      justify-items: flex-end;
+      border-radius: 10px;
+      margin-bottom: 35px;
+  }
+  
+  
+  .input{
+      width: 459.24px !important;
+      height: 40px;
+      border-radius: 0px 10px 10px 10px;
+      margin-bottom: 35px;
+  }
+  
+  .input3{
+      width:1027.99px;
+      height: 40px;
+      border-radius: 0px 10px 10px 10px;
+      margin-bottom: 35px;
+  }
+  
+  .input3::placeholder {
+      font-size: 20px; 
+  }
+  
+  .input::placeholder {
+      font-size: 20px; 
+  }
+  
+  
