@@ -3,10 +3,13 @@ import { createRoot } from 'react-dom/client'
 import App from './App/App'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
+import Lista from './integration/Lista'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <>
     <App/>
+    </>
   </StrictMode>,
 )

@@ -8,8 +8,8 @@ const Header = () => {
             <Btns>
                 <LinkStyled to=''>INICIO</LinkStyled>
                 <LinkStyled to='login'>LOGIN</LinkStyled>
-                <LinkStyled to='contato'>CONTATO</LinkStyled>
                 <LinkStyled to='register'>REGISTRO</LinkStyled>
+                <LinkStyled to='contato'>CONTATO</LinkStyled>
             </Btns>
         </Caixa>
     )

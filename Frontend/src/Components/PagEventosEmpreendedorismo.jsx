@@ -1,126 +1,101 @@
-import {H1, Caixa2, Caixa, Linha, Linhas, CaixaH1} from '../Styles/PagEventosEmpr.js'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Table } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Placeholder from "react-bootstrap/Placeholder";
 
-import foto1 from '../imgs/image6.png'
+const Lista = () => {
+  const [eventos, setEventos] = useState([]);
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+  useEffect(() => {
+    const fetchEventos = async () => {
+      try {
+        const response = await axios.get("http://localhost:3333/eventos/listar");
+        setEventos(response.data);
+      } catch (error) {
+        console.error("Erro ao listar eventos:", error);
+      }
+    };
 
-import '../Styles/PagEventos.css'
+    fetchEventos();
+  }, []);
 
-const PagAddEventosEmpreendedorismo = () => {
-    return(
-      <Caixa className='caixa'>
+  // Só exibe o console se houver dados em eventos
+  if (eventos.length > 0) {
+    console.log(eventos[0].imagem);
+  }
 
-          <CaixaH1 className='caixa2'>
-            <H1>Eventos de Empreendedorismo:</H1>
-          </CaixaH1>
-        <Caixa2>
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3333//eventos/${id}`);
+      setEventos(eventos.filter((evento) => evento.id !== id));
+    } catch (error) {
+      console.error("Erro ao excluir evento:", error);
+    }
+  };
 
-          <Linhas>
-              <Linha>
-            <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
+  return (
+    <Table striped bordered hover>
+      <tbody>
+        {eventos.length > 0 ? (
+          eventos.map((evento) => (
+            <div  key={evento.id}  className="d-flex justify-content-around">
+              <Card style={{ width: "18rem" }}>
+                <Card.Img variant="top" src={`http://localhost:3333/uploads/${evento.image}`} />
+                <Card.Body>
+                  <Card.Title>{evento.titulo}</Card.Title>
+                  <Card.Text>
+                  {evento.local}
+                  </Card.Text>
+                  <Button variant="primary">Saiba mais</Button>
+                </Card.Body>
+              </Card>
 
+              <Card style={{ width: "18rem" }}>
+                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                  <Placeholder as={Card.Title} animation="glow">
+                    <Placeholder xs={6} />
+                  </Placeholder>
+                  <Placeholder as={Card.Text} animation="glow">
+                    <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
+                    <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
+                    <Placeholder xs={8} />
+                  </Placeholder>
+                  <Placeholder.Button variant="primary" xs={6} />
+                </Card.Body>
+              </Card>
+            </div>
 
+            // <tr key={evento.id}>
+            //   <td>{evento.nome}</td>
+            //   <td>{evento.descricao}</td>
+            //   <td>{evento.status}</td>
+            //   <td>
+            //     {evento.imagem ? (
+            //       <img
+            //         src={`http://localhost:3333/uploads/${evento.imagem}`}
+            //         alt={evento.nome}
+            //         style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+            //       />
+            //     ) : (
+            //       <span>Imagem não disponível</span>
+            //     )}
+            //   </td>
+            //   <td>
+            //     <button onClick={() => handleDelete(evento.id)}>Excluir</button>
+            //   </td>
+            // </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="5">Nenhum evento disponível</td>
+          </tr>
+        )}
+      </tbody>
+    </Table>
+  );
+};
 
-      </Card.Body>
-    </Card>
-
-    <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-
-    <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-
-              </Linha>
-              <Linha>
-              <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-
-    <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-
-    <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
-      <Card.Img variant="top" src={foto1} />
-      <Card.Body>
-        <Card.Title style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>Gerenciamento de Dados</Card.Title>
-        <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>
-        is simply dummy text of the printing and typesetting industry.
-        </Card.Text >
-        <Button variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>
-  saber mais
-</Button>
-
-
-
-      </Card.Body>
-    </Card>
-                
-              </Linha>
-          </Linhas>
-
-        </Caixa2>
-      </Caixa>
-    )
-}
-export default PagAddEventosEmpreendedorismo
+export default Lista;

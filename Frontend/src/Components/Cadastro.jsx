@@ -23,9 +23,9 @@ const Cadastro = () => {
                 },
             });
             setMessage('Usuário cadastrado com sucesso!');
-            setEmail('');  // Aqui troquei de setNome para setEmail
-            setSenha('');  // Aqui troquei de setDescricao para setSenha
-            setConfirmaSenha('');  // Resetei a confirmação de senha também
+            setEmail('');  
+            setSenha('');  
+            setConfirmaSenha('');  
         } catch (error) {
             console.error('Erro ao cadastrar usuário:', error.response || error);
             setMessage('Erro ao cadastrar usuário');
