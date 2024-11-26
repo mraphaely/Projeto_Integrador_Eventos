@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Caixa = styled.div`   
 display: flex;
+height: 155vh;
 background-color: #000;
 margin: 0px !important;
 flex-wrap: nowrap;
@@ -154,7 +155,6 @@ height: 245.67px;
 background: linear-gradient(150deg, #fff 0%, #ACACAC 100%);
 border-radius: 10px;
 align-items:center;
-
 `
 
 export const SpanMini4 = styled.span`

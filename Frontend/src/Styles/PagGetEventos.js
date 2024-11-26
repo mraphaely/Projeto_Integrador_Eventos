@@ -26,10 +26,9 @@ margin-bottom:45px;
 font-size: 32px;
 `
 export const ButtonGet = styled.button`
-width: 20px;
-heigth: auto;
-border: 'none';
-color: '#fff';
-font-size: '20px'; 
-background-color: 'rgba(255, 255, 255, 0.29)';
+color: #fff;
+font-size: 20px; 
+background-color: rgba(255, 255, 255, 0.29);
+border-radius: 5px;
+padding: 5px;
 `

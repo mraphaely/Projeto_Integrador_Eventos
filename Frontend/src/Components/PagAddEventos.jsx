@@ -179,7 +179,7 @@ const PagAddEventos = () => {
           <Btn variant="primary" type="submit" className="btn">
             CADASTRAR
           </Btn>
-          {message ? <p style={{color: "#ffff", display: "flex", textAlign: "center"}}>{message}</p> : <p>{loading}</p>}
+          {message ? <p style={{color: "#ffff", display: "flex", textAlign: "center", fontSize: "20px", marginLeft: "650px"}}>{message}</p> : <p>{loading}</p>}
         </Form>
       </Caixa>
     </Caixa1>
