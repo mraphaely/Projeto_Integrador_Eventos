@@ -28,7 +28,7 @@ const PagEventosGeral = () => {
   }, []);
 
   return (
-    <Container className='caixa'>
+    <Container className='container'>
 
           <CaixaH1 className='caixa2'>
             <H1>Eventos em Geral:</H1>

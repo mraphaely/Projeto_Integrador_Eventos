@@ -1,6 +1,5 @@
-
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import {
   H1,
   Caixa1,
@@ -30,7 +29,8 @@ const PagAddEventos = () => {
   const [loading, setLoading] = React.useState(null);
 
   const handleFileChange = (event) => {
-    setImagem(event.target.files[0].name);
+    // setImagem(event.target.files[0].name);
+    setImagem(event.target.files[0]);
   };
 
   const HandlePost = async (event) => {
@@ -156,7 +156,7 @@ const PagAddEventos = () => {
             </Linha2>
           </Div>
           <Linha3>
-            <Form.Group className="mb-3" controlId="vagas">
+            <Form.Group className="mb-3" controlId="ingresso">
               <Label>Ingresso:</Label>
               <Form.Control
                 type="number"
@@ -167,21 +167,19 @@ const PagAddEventos = () => {
                 required
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="descricao">
-              <Label>Descrição:</Label>
-              <Form.Control
-                type="textarea"
-                className="input2"
-                value={descricao}
-                onChange={(event) => setDescricao(event.target.value)}
-              />
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Label>Descrição:</Label>
+            <Form.Control as="textarea" rows={3} 
+            className="input2"
+            value={descricao}
+            onChange={(event) => setDescricao(event.target.value)}/>
             </Form.Group>
           </Linha3>
 
           <Btn variant="primary" type="submit" className="btn">
             CADASTRAR
           </Btn>
-          {message ? <p>{message}</p> : <p>{loading}</p>}
+          {message ? <p style={{color: "#ffff", display: "flex", textAlign: "center"}}>{message}</p> : <p>{loading}</p>}
         </Form>
       </Caixa>
     </Caixa1>

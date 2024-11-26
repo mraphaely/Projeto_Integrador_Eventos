@@ -3,7 +3,8 @@ import axios from "axios";
 import { Table, Button, Card } from "react-bootstrap";
 import {H1, Caixa2, Container, CaixaH1} from '../Styles/PagGetEventos.js'
 
-const PagEventosTecnologia = () => {
+
+const PagEventosGeral = () => {
   const [eventos, setEventos] = React.useState([]);
 
   React.useEffect(() => {
@@ -27,10 +28,10 @@ const PagEventosTecnologia = () => {
   }, []);
 
   return (
-    <Container className='caixa'>
+    <Container className='container'>
 
           <CaixaH1 className='caixa2'>
-            <H1>Eventos em Tecnologia:</H1>
+            <H1>Eventos em Geral:</H1>
           </CaixaH1>
         <Caixa2>
 
@@ -61,10 +62,12 @@ const PagEventosTecnologia = () => {
         )}
       </tbody>
     </Table>
+    {/* </Linha> */}
+          {/* </Linhas> */}
 
         </Caixa2>
       </Container>
   );
 }
 
-export default PagEventosTecnologia
+export default PagEventosGeral

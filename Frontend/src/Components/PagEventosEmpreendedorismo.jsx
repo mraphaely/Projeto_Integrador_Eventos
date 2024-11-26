@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Table, Button, Card } from "react-bootstrap";
-import {H1, Caixa2, Container, CaixaH1} from '../Styles/PagGetEventos.js'
+import {H1, Caixa2, Container, CaixaH1, ButtonGet} from '../Styles/PagGetEventos.js'
 
 const Lista = () => {
   const [eventos, setEventos] = React.useState([]);
@@ -27,7 +27,7 @@ const Lista = () => {
   }, []);
 
   return (
-    <Container className='caixa'>
+    <Container className='container'>
 
           <CaixaH1 className='caixa2'>
             <H1>Eventos de Empreendedorismo:</H1>
@@ -46,7 +46,7 @@ const Lista = () => {
                     <Card.Title  style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>{evento.titulo}</Card.Title>
                     <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>{evento.palestrante}</Card.Text>
                     <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>{evento.descricao}</Card.Text>
-                    <Button  variant="primary" className="important-padding" style={{border: 'none', color: '#fff', fontSize: '20px', backgroundColor: 'rgba(255, 255, 255, 0.29)' }}>Saiba mais</Button>
+                    <ButtonGet>Saiba mais</ButtonGet>
                   </Card.Body>
                 </Card>
 

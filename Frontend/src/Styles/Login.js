@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Caixa = styled.div`
+export const CaixaLogin = styled.div`
   display: flex;
   background-color: #000;
-  height:100vh;
+  height: 80vh;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -13,6 +13,7 @@ export const Caixa = styled.div`
 export const Caixinha1 = styled.div`
   margin: 30px 0px;
   width: 485.32px;
+  border-radius: 10px 0px 0px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;

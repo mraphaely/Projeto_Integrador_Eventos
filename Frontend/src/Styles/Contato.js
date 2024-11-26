@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Caixa = styled.div`
   display: flex;
   background-color: #000;
-  height:100vh;
+  height: 80vh;
   flex-direction: row;
   justify-content: center;
   align-items: center;

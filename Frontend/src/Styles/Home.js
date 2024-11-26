@@ -26,7 +26,7 @@ margin: 90px 0px !important;
 
 export const Img1 = styled.img`
 padding-right: 90px !important;
-height: 447px !important;
+height: 428px !important;
 width: 627px !important;
 `
 

@@ -1,6 +1,5 @@
 
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const Caixa1 = styled.div`
   display: flex;
@@ -19,8 +18,9 @@ font-size:25px;
 display: flex;
 justify-content: center;
 align-items: center;
-width: 1170px;
+width: 1100px;
 color: #fff;
+margin-bottom: 28px;
 `
 
 export const Caixa = styled.div`
@@ -59,7 +59,7 @@ export const Label = styled.label`
 `;
 
 
-export const Btn = styled(Link)`
+export const Btn = styled.button`
   color: #fff;
   margin-top:50px !important ;
   display: flex;
