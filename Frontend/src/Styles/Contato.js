@@ -36,7 +36,7 @@ export const Caixinha2 = styled.div`
   border-radius: 0px 10px 10px 0px ;
 `;
 
-export const Btn2 = styled.button`
+export const Btn2 = styled(Link)`
   color: #fff;
   display: flex;
   width: 200px;

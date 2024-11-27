@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.form`
-display: grid !important; 
-grid-template-columns: repeat(3, 1fr) !important; 
+display:flex;
+flex-direction: column;
 background-color:#000 ;
-
+padding:30px 90px !important ;
 `
 
 export const Caixa2 = styled.div`   
@@ -25,10 +26,10 @@ margin-right:190px;
 margin-bottom:45px;
 font-size: 32px;
 `
-export const ButtonGet = styled.button`
-color: #fff;
-font-size: 20px; 
-background-color: rgba(255, 255, 255, 0.29);
-border-radius: 5px;
-padding: 5px;
+export const ButtonGet = styled(Link)`
+heigth: auto;
+border: 'none';
+color: '#fff';
+font-size: '20px'; 
+background-color: 'rgba(255, 255, 255, 0.29)';
 `

@@ -3,6 +3,8 @@ import axios from "axios";
 import { Table, Button, Card } from "react-bootstrap";
 import {H1, Caixa2, Container, CaixaH1, ButtonGet} from '../Styles/PagGetEventos.js'
 
+import '../Styles/PagEventos.css'
+
 const Lista = () => {
   const [eventos, setEventos] = React.useState([]);
 
@@ -35,18 +37,18 @@ const Lista = () => {
         <Caixa2>
 
     <Table striped bordered hover>
-      <tbody>
+      <tbody className="d-flex">
         {eventos.length > 0 ? (
           eventos.map((evento) => (
             <React.Fragment key={evento.id}>
-              <div className="d-flex justify-content-around">
+              <div className="d-flex">
               <Card className="important-padding2" style={{ width: '355px', height:'355px', background: 'linear-gradient( #2D0065 50%, #5A00CB)',fontSize:'24px'  }}>
                   <Card.Img variant="top" src={`http://localhost:3333/eventos/${evento.image}`} />
                   <Card.Body>
                     <Card.Title  style={{ color: '#fff', marginLeft: '20px', marginTop: '20px' }}>{evento.titulo}</Card.Title>
                     <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>{evento.palestrante}</Card.Text>
                     <Card.Text style={{color:'#fff', width:'344px', marginLeft: '20px', marginTop: '10px', fontSize:'20px' }}>{evento.descricao}</Card.Text>
-                    <ButtonGet>Saiba mais</ButtonGet>
+                    <ButtonGet  className="ButtomEventos" to={'/selecionarEvento'}>Saiba mais</ButtonGet>
                   </Card.Body>
                 </Card>
 

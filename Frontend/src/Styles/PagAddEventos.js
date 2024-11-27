@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Caixa1 = styled.div`
   display: flex;
   background-color: #000;
-  height: 120vh;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -12,7 +12,7 @@ export const Caixa1 = styled.div`
 
 export const H1 = styled.h1`
 background: linear-gradient(0deg, #5A00CB 0%, #2D0065 100%);
-padding: 15px !important;
+padding: 20px !important;
 border-radius: 10px 10px 0px 0px;
 font-size:25px;
 display: flex;
@@ -20,7 +20,7 @@ justify-content: center;
 align-items: center;
 width: 1100px;
 color: #fff;
-margin-bottom: 10px;
+margin-bottom: 28px;
 `
 
 export const Caixa = styled.div`
@@ -67,7 +67,6 @@ export const Btn = styled.button`
   height: 50px;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   font-size: 18px;
   text-decoration: none;
   background: linear-gradient(0deg, #5A00CB 0%, #2D0065 100%);

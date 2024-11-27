@@ -17,7 +17,7 @@ import PagAddEventosEmpreendedorismo from "../Components/PagEventosEmpreendedori
 import PagAddEventosGeral from "../Components/PagEventosGeral";
 import PagAddEventosTec from "../Components/PagEventosTecnologia";
 
-
+import SelecionarEvento from '../Components/SelecionarEvento'
 
 const App = () => {
     return(
@@ -35,6 +35,7 @@ const App = () => {
                 <Route path="PagEventosGeral" element={<PagAddEventosGeral/>} />
                 <Route path="PagEventosTec" element={<PagAddEventosTec/>} />
                 <Route path="PagLogin" element={<Login/>} />
+                <Route path="/selecionarEvento" element={<SelecionarEvento/>} />
             </Routes>
             <Footer/>
             </Container>
